@@ -1,0 +1,88 @@
+# BEGIN HMWP_RULES
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^([_0-9a-zA-Z-]+/)?pp-admin/(.*) /AssociationPingPong/wp-admin/$2 [QSA,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?infiltration$ /AssociationPingPong/wp-login.php [QSA,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?infiltration/(.*) /AssociationPingPong/wp-login.php$2 [QSA,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?teteEnLair$ /AssociationPingPong/wp-login.php?action=lostpassword [QSA,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?pointer$ /AssociationPingPong/wp-login.php?action=register [QSA,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?Contenu/extensions/1a03f1c702/(.*) /AssociationPingPong/wp-content/plugins/akismet/$2 [QSA,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?Contenu/extensions/a16a9982f1/(.*) /AssociationPingPong/wp-content/plugins/avif-support/$2 [QSA,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?Contenu/extensions/e10ef7ce31/(.*) /AssociationPingPong/wp-content/plugins/child-theme-configurator/$2 [QSA,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?Contenu/extensions/23fdd05d85/(.*) /AssociationPingPong/wp-content/plugins/disable-gutenberg/$2 [QSA,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?Contenu/extensions/e83213ac50/(.*) /AssociationPingPong/wp-content/plugins/duplicator/$2 [QSA,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?Contenu/extensions/79eee1eaa5/(.*) /AssociationPingPong/wp-content/plugins/olympus-google-fonts/$2 [QSA,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?Contenu/extensions/d0f4711431/(.*) /AssociationPingPong/wp-content/plugins/hide-my-wp/$2 [QSA,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?Contenu/extensions/9989398c84/(.*) /AssociationPingPong/wp-content/plugins/remove-powered-by-wp/$2 [QSA,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?Contenu/extensions/39d10ee62c/(.*) /AssociationPingPong/wp-content/plugins/woocommerce/$2 [QSA,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?Contenu/extensions/f9c7f63a6a/(.*) /AssociationPingPong/wp-content/plugins/wordpress-seo/$2 [QSA,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?Contenu/extensions/(.*) /AssociationPingPong/wp-content/plugins/$2 [QSA,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?Contenu/theme/96f874eecb/global.css$ /AssociationPingPong/wp-content/themes/twentytwentyone/style.css [QSA,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?Contenu/theme/96f874eecb/(.*) /AssociationPingPong/wp-content/themes/twentytwentyone/$2 [QSA,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?Contenu/theme/a37e87dcf0/global.css$ /AssociationPingPong/wp-content/themes/twentytwentythree/style.css [QSA,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?Contenu/theme/a37e87dcf0/(.*) /AssociationPingPong/wp-content/themes/twentytwentythree/$2 [QSA,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?Contenu/theme/70da61391b/global.css$ /AssociationPingPong/wp-content/themes/twentytwentytwo/style.css [QSA,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?Contenu/theme/70da61391b/(.*) /AssociationPingPong/wp-content/themes/twentytwentytwo/$2 [QSA,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?Contenu/theme/(.*) /AssociationPingPong/wp-content/themes/$2 [QSA,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?Stockage/(.*) /AssociationPingPong/wp-content/uploads/$2 [QSA,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?Contenu/(.*) /AssociationPingPong/wp-content/$2 [QSA,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?Librairie/(.*) /AssociationPingPong/wp-includes/$2 [QSA,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?commentaires/(.*) /AssociationPingPong/wp-comments-post.php$2 [QSA,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?Bureaucrate/(.*) /AssociationPingPong/author/$2 [QSA,L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?pp-json/(.*) /AssociationPingPong/wp-json/$2 [QSA,L]
+</IfModule>
+
+
+# END HMWP_RULES
+# BEGIN HMWP_VULNERABILITY
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /AssociationPingPong/
+RewriteCond %{THE_REQUEST} etc/passwd [NC,OR]
+RewriteCond %{THE_REQUEST} cgi-bin [NC,OR]
+RewriteCond %{QUERY_STRING} (\<|%3C).*object.*(\>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} (<|%3C)([^o]*o)+bject.*(>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} (\<|%3C).*iframe.*(\>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} (<|%3C)([^i]*i)+frame.*(>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} base64_encode.*\(.*\) [NC,OR]
+RewriteCond %{QUERY_STRING} base64_(en|de)code[^(]*\([^)]*\) [NC,OR]
+RewriteCond %{QUERY_STRING} (localhost|loopback|127\.0\.0\.1) [NC,OR]
+RewriteCond %{QUERY_STRING} concat[^\(]*\( [NC,OR]
+RewriteCond %{QUERY_STRING} union([^s]*s)+elect [NC,OR]
+RewriteCond %{QUERY_STRING} union([^a]*a)+ll([^s]*s)+elect [NC,OR]
+RewriteCond %{QUERY_STRING} (sp_executesql) [NC]
+RewriteRule ^(.*)$ - [F]
+</IfModule>
+
+<IfModule mod_headers.c>
+Header always unset x-powered-by
+Header always unset server
+ServerSignature Off
+</IfModule>
+
+<IfModule mod_headers.c>
+Header set Strict-Transport-Security "max-age=15768000;includeSubdomains"
+Header set Content-Security-Policy "object-src 'none'"
+Header set X-XSS-Protection "1; mode=block"
+Header set X-Content-Type-Options "nosniff"
+</IfModule>
+
+
+
+# END HMWP_VULNERABILITY
+
+# BEGIN WordPress
+# Les directives (lignes) entre « BEGIN WordPress » et « END WordPress » sont générées
+# dynamiquement, et doivent être modifiées uniquement via les filtres WordPress.
+# Toute modification des directives situées entre ces marqueurs sera surchargée.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /AssociationPingPong/
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /AssociationPingPong/index.php [L]
+</IfModule>
+
+# END WordPress
